@@ -1279,6 +1279,47 @@
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[newPed]]></Name>
+							<Value Class="EntityCodeValue">
+								<IsAgentEntity>true</IsAgentEntity>
+								<EntityEmbeddedObject>
+									<ActiveObjectClass>
+										<PackageName><![CDATA[simulation_japan]]></PackageName>
+										<ClassName><![CDATA[Pax]]></ClassName>
+									</ActiveObjectClass>
+									<GenericParameterSubstitute>
+										<GenericParameterSubstituteReference>
+											<PackageName><![CDATA[simulation_japan]]></PackageName>
+											<ClassName><![CDATA[Pax]]></ClassName>
+											<ItemName><![CDATA[1738579435957]]></ItemName>
+										</GenericParameterSubstituteReference>
+									</GenericParameterSubstitute>
+									<Parameters>
+									</Parameters>
+									<ReplicationFlag>true</ReplicationFlag>
+									<Replication Class="CodeValue">
+										<Code><![CDATA[100]]></Code>
+									</Replication>
+									<CollectionType>ARRAY_LIST_BASED</CollectionType>
+									<InitialLocationType>XYZ</InitialLocationType>
+									<ColumnCode Class="CodeValue">
+										<Code><![CDATA[0]]></Code>
+									</ColumnCode>
+									<RowCode Class="CodeValue">
+										<Code><![CDATA[0]]></Code>
+									</RowCode>
+									<LocationNameCode Class="CodeValue">
+										<Code><![CDATA[""]]></Code>
+									</LocationNameCode>
+									<InitializationType>LOAD_FROM_DATABASE</InitializationType>
+									<InitializationDatabaseTableQuery>
+										<TableReference>
+										</TableReference>
+									</InitializationDatabaseTableQuery>
+									<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+									<QuantityColumn>
+									</QuantityColumn>
+								</EntityEmbeddedObject>
+							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[comfortableSpeed]]></Name>
@@ -1942,6 +1983,9 @@
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[onAtExitQueue]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[hold.unblock();]]></Code>
+							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[onExitQueue]]></Name>
@@ -1954,9 +1998,6 @@
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[onExit]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[hold.unblock();]]></Code>
-							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[onCancel]]></Name>
@@ -2038,6 +2079,9 @@
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[onAtExitQueue]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[hold1.unblock();]]></Code>
+							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[onExitQueue]]></Name>
@@ -2050,9 +2094,6 @@
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[onExit]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[hold1.unblock();]]></Code>
-							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[onCancel]]></Name>
@@ -5961,6 +6002,12 @@
 		<VersionMajor>8</VersionMajor>
 		<VersionMinor>0</VersionMinor>
 		<VersionBuild>5</VersionBuild>
+    </RequiredLibraryReference>
+    <RequiredLibraryReference>
+		<LibraryName><![CDATA[simulation_japan]]></LibraryName>
+		<VersionMajor>0</VersionMajor>
+		<VersionMinor>0</VersionMinor>
+		<VersionBuild>0</VersionBuild>
     </RequiredLibraryReference>
 </Model>
 </AnyLogicWorkspace>
