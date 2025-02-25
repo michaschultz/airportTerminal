@@ -860,6 +860,12 @@
 										</GenericParameterSubstituteReference>
 									</GenericParameterSubstitute>
 									<Parameters>
+										<Parameter>
+											<Name><![CDATA[onlineCheckIn]]></Name>
+										</Parameter>
+										<Parameter>
+											<Name><![CDATA[arrivalTime]]></Name>
+										</Parameter>
 									</Parameters>
 									<ReplicationFlag>true</ReplicationFlag>
 									<Replication Class="CodeValue">
@@ -1211,7 +1217,7 @@
 						<Parameter>
 							<Name><![CDATA[condition]]></Name>
 							<Value Class="CodeValue">
-								<Code><![CDATA[agent.flightID.equals("FR007")]]></Code>
+								<Code><![CDATA[agent.onlineCheckIn]]></Code>
 							</Value>
 						</Parameter>
 						<Parameter>
@@ -1579,6 +1585,10 @@
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[delayTime]]></Name>
+							<Value Class="CodeUnitValue">
+								<Code><![CDATA[77+72*Math.pow(Math.log(-uniform(0.0, 1.0)), 1/6)]]></Code>
+								<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[recoveryDelay]]></Name>
@@ -3083,6 +3093,7 @@
 		<ActiveObjectClass>
 			<Id>1738852641631</Id>
 			<Name><![CDATA[Pedestrian]]></Name>
+			<StartupCode><![CDATA[initPax();]]></StartupCode>
 			<Generic>false</Generic>
 			<GenericParameter>
 				<Id>1738852641637</Id>
@@ -3184,7 +3195,7 @@
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[String]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[(Math.random() < 0.2) ? "LH214" : (Math.random() < 0.4) ? "FR007" : (Math.random() < 0.6) ? "AF345" : (Math.random() < 0.8) ? "AM505" : "AC115";]]></Code>
+							<Code><![CDATA[""]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -3212,7 +3223,66 @@
 						</ParameterEditor>
 					</Properties>                 
 				</Variable>
+				<Variable Class="Parameter">
+					<Id>1739290893140</Id>
+					<Name><![CDATA[arrivalTime]]></Name>
+					<X>130</X><Y>170</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[]]></Type>
+						<UnitType><![CDATA[TIME]]></UnitType>
+						<UnitOfValue Class="TimeUnits"><![CDATA[MINUTE]]></UnitOfValue>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeUnitValue">
+							<Code><![CDATA[]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[MINUTE]]></Unit>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1739290893138</Id>
+							<EditorContolType>UNIT_EDITOR</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
 			</Variables>
+			<Functions>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[String]]></ReturnType>
+					<Id>1739796397738</Id>
+					<Name><![CDATA[initPax]]></Name>
+					<X>440</X><Y>80</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[System.out.println("Pax erzeugt");
+
+
+double rnd = Math.random();
+
+
+
+
+flightID = (Math.random() < 0.2) ? "LH214" : (
+	(Math.random() < 0.4) ? "FR007" : (
+		(Math.random() < 0.6) ? "AF345" : (
+			(Math.random() < 0.8) ? "AM505" : "AC115" 
+		)
+	)
+);
+
+
+System.out.println(flightID);
+
+]]></Body>
+				</Function>
+			</Functions>
 			<AgentLinks>
 				<AgentLink>
 					<Id>1738852641632</Id>
@@ -3322,6 +3392,36 @@
 		<AutoExport>false</AutoExport>
 		<ShutdownCompact>false</ShutdownCompact>
 		<ImportSettings>
+			<ExternalConnection>
+				<Id>1740057140994</Id>
+				<Name><![CDATA[database]]></Name>
+				<X>0</X><Y>0</Y>
+				<Label><X>10</X><Y>0</Y></Label>
+				<PublicFlag>false</PublicFlag>
+				<PresentationFlag>true</PresentationFlag>
+				<ShowLabel>true</ShowLabel>
+				<DatabaseType>EXCEL_ACCESS</DatabaseType>
+				<ConnectionURL><![CDATA[]]></ConnectionURL>
+				<ConnectOnStartup>true</ConnectOnStartup>
+				<DatabaseName><![CDATA[]]></DatabaseName>
+				<ResourceReference>
+					<PackageName><![CDATA[test]]></PackageName>
+					<ClassName><![CDATA[C:/Users/Durben/Desktop/BA Durben/FlugDaten.xlsx]]></ClassName>
+				</ResourceReference>
+				<Host><![CDATA[localhost]]></Host>
+				<JdbcDriverClassName><![CDATA[net.sourceforge.jtds.jdbc.Driver]]></JdbcDriverClassName>
+				<Login><![CDATA[]]></Login>
+				<Password><![CDATA[]]></Password>
+			</ExternalConnection>
+			<TableImportSettings>
+				<TableReference>
+					<PackageName><![CDATA[test]]></PackageName>
+					<ClassName><![CDATA[tabelle1]]></ClassName>
+				</TableReference>
+				<ConnectionIndex>0</ConnectionIndex>
+				<ExternalTableName><![CDATA["Tabelle1"]]></ExternalTableName>
+				<AutoImport>true</AutoImport>
+			</TableImportSettings>
 		</ImportSettings>
 		<ExportSettings>
 		</ExportSettings>
@@ -3412,6 +3512,11 @@
 	<ModelResources>
 		<Resource>
 			<Path><![CDATA[3d/person.dae]]></Path>
+			<ReferencedFromUserCode>false</ReferencedFromUserCode>
+			<Location>FILE_SYSTEM</Location>
+		</Resource>
+		<Resource>
+			<Path><![CDATA[C:/Users/Durben/Desktop/BA Durben/FlugDaten.xlsx]]></Path>
 			<ReferencedFromUserCode>false</ReferencedFromUserCode>
 			<Location>FILE_SYSTEM</Location>
 		</Resource>
